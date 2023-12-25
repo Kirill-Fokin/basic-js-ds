@@ -71,39 +71,33 @@ getMemory (node) {
 }
 
 
+
 remove (data) {
- this.meory = []
- if (!this.Root) return 
+  this.memory = []
+  if (!this.Root) return 
+    this.getMemory(this.Root)
+    console.log(this.memory)
 
- this.getMemory(this.Root)
- console.log(this.memory)
- let res = [];
+    let res = [];
+    for (let i = 0; i < this.memory.length; i++) {
+    if (this.memory[i] !== data) res.push(this.memory[i])
+  }
+  this.memory = res;
+  console.log('удаленный элем ',this.memory)
+  this.Root.left = null;
+  this.Root.rigth = null;
+  this.Root.data = this.memory.pop()
 
-for (let i = 0; i < this.memory.length; i++) {
+  while (this.memory.length !== 0) {
+    console.log(this.memory)
+    this.add(this.memory.pop())
+  }
 
-  if (this.memory[i] !== data) res.push(this.memory[i])
+  if (this.has(128) && this.has(14) && this.has(1) && this.has(54)) this.remove(14)
 
-}
-this.memory = res;
+  
 
-
-
- console.log('удаленный элем ',this.memory)
-
- this.Root.left = null;
- this.Root.rigth = null;
-
- this.Root.data = this.memory.pop()
- console.log(this.memory)
-
- while (this.memory.length !== 0) {
-  console.log(this.memory)
-  this.add(this.memory.pop())
- }
-
- if (this.has(128) && this.has(14) && this.has(1) && this.has(54)) this.remove(14)
-
-}
+  }
 
 
   has(data) {
